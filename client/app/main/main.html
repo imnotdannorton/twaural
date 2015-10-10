@@ -2,7 +2,7 @@
 	<div class="message">
 		
 		<div class="avatar"><img ng-src="{{userIcon}}"></div>
-		<p ng-style="{'color': '#'+activeColor }"><span ng-repeat="char in origTweet track by $index" ng-class="{'active':activeIndex >= $index}">{{char}}<span><p>
+		<p ng-style="{'color': '#'+activeColor }">@{{activeUsername}}: <span ng-repeat="char in origTweet track by $index" ng-class="{'active':activeIndex >= $index}">{{char}}<span><p>
 		<button ng-click="startAll()">Start</button>
 		<button ng-click="stopAll()">Stop</button>
 		<button ng-click="next()">Next</button>

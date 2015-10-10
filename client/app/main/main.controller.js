@@ -52,6 +52,7 @@ angular.module('twauralApp')
       $scope.bg = object.user.profile_banner_url || object.user.profile_background_image_url || object.user.profile_image_url;
       $scope.userIcon = object.user.profile_image_url;
       $scope.activeColor = object.user.profile_link_color;
+      $scope.activeUsername = object.user.screen_name;
       console.log("background ", $scope.bg, " icon ", $scope.userIcon)
       $scope.activeTweet = object.text;
       $scope.origTweet = object.text;
@@ -119,9 +120,14 @@ angular.module('twauralApp')
           for (var i = $scope.activeStrings.length - 1; i >= 0; i--) {
             console.log(index, i, data.data[i].s3_key)
             $scope.clips[$scope.activeStrings[i]] = data.data[i];
+            if(data.data[i].s3_key.length == 0){
+              var link = $scope.cloudfrontUrl + data.data[i+1].s3_key.replace('wav', 'mp3');
+            }else{
+              var link = $scope.cloudfrontUrl + data.data[i].s3_key.replace('wav', 'mp3');
+            }
             soundManager.createSound({
               id:'clip_'+$scope.activeStrings[i],
-              url: $scope.cloudfrontUrl + data.data[i].s3_key.replace('wav', 'mp3'),
+              url: link,
               onfinish: function(){
                 $scope.nextChar();
               }
