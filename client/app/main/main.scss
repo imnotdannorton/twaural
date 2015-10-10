@@ -1,27 +1,66 @@
-.thing-form {
-  margin: 20px 0;
+@import url(http://fonts.googleapis.com/css?family=Exo:400,700);
+
+body, #wrapper { 
+  background-position: center center;
+  background-repeat:  no-repeat;
+  background-attachment: fixed;
+  background-size:  cover;
+  background-color: #999;
+  font-family: exo, sans-serif;
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }
 
-#banner {
-  border-bottom: none;
-  margin-top: -20px;
+div, body{
+  margin: 0;
+  padding: 0;
 }
+/*.wrapper {
+  height: 100%; 
+  width: 100%; 
+}*/
 
-#banner h1 {
-  font-size: 60px;
-  line-height: 1;
-  letter-spacing: -1px;
-}
-
-.hero-unit {
-  position: relative;
-  padding: 30px 15px;
-  color: #F5F5F5;
+.message {
+  bottom: 10px;
+  left: 10px;
+  background-color: rgba(0,0,0,0.5);
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #FFF;
+  display: block;
+  height: calc(100% - 20px);
+  width: calc(100% - 20px);
+  padding: 10%;
   text-align: center;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-  background: #4393B9;
+  position: relative;
+  top:50%;
+  transform:translateY(-50%);
+  p{
+    font-size: 2em;
+    font-weight: bold;
+    .active{
+      color: #fff;
+    }
+  }
 }
 
-.navbar-text {
-  margin-left: 15px;
+h1 {text-align: center;}
+h1 > .active {color: white;}
+
+.avatar {
+  border: 5px solid #FFF;  
+  border-radius: 4px;
+  margin: 0 auto;
+  padding: .5em;
+  text-align: center;
+  width: 8em;
+}
+.avatar img {
+  border-radius: 3px;
+  -webkit-filter: grayscale(100%);
+  -webkit-filter: sepia(1) hue-rotate(200deg);
+  filter: sepia(1) hue-rotate(200deg);
+  width: 100%;
 }

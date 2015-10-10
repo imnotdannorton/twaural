@@ -1,1 +1,17 @@
-<h1>{{activeTag}}</h1>
+<div id="wrapper" ng-style="{'background-image': 'url('+bg+')', 'background-color': activeColor}">
+	<div class="message">
+		
+		<div class="avatar"><img ng-src="{{userIcon}}"></div>
+		<p ng-style="{'color': '#'+activeColor }"><span ng-repeat="char in origTweet track by $index" ng-class="{'active':activeIndex >= $index}">{{char}}<span><p>
+		<button ng-click="startAll()">Start</button>
+		<button ng-click="stopAll()">Stop</button>
+		<button ng-click="next()">Next</button>
+		<form>
+			<h1>#{{activeTag}}</h1>
+			<input ng-model="newTag" type="text"></input>
+			<button ng-click="fetchTweets(newTag)">Update</button>
+		</form>
+	</div>
+	
+</div>
+

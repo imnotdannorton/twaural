@@ -8,7 +8,16 @@ angular.module('twauralApp').service('sampleService', ['$http', function ($http)
 	this.fetchLoops = function(instruments){
 		return $http.get(endpoint + '?type=loop&instruments='+instruments)
 	}
+	this.fetchLoopsByTempo = function(tempo, instruments){
+		if(tempo < 80){
+			tempo = 80 + tempo;
+		}
+		return $http.get(endpoint + '?type=loop&tempo='+tempo)
+	}
+	this.fetchPackage = function(id){
+		return $http.get(endpoint + '?package_id='+id)
+	}
 	this.fetchSamples = function(key){
-		return $http.get(endpoint + '?type=one_shot&musical_key='+instruments)
+		return $http.get(endpoint + '?type=one_shot&musical_key='+key)
 	}
 }]);
