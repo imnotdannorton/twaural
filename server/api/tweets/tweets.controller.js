@@ -79,6 +79,13 @@ exports.fetchTag = function(req, res){
   });
 }
 
+exports.fetchTweet = function(req, res){
+  console.log(req.params);
+  client.get('statuses/show/', {q: req.params.id}, function(error, tweets, response){
+    return res.status(200).json(tweets);
+  });
+}
+
 
 
 

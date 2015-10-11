@@ -154,7 +154,8 @@ angular.module('twauralApp')
       if (string){
         console.log('play for ' + string);
         var activeSound = 'clip_'+string.toUpperCase();
-        soundManager.play(activeSound)
+        soundManager.play(activeSound);
+        $scope.playing = true;
       }
     }
     $scope.nextChar = function(){
@@ -173,7 +174,8 @@ angular.module('twauralApp')
       console.log('activeIndex', $scope.activeIndex, $scope.activeTweet[$scope.activeIndex], $scope.activeTweet.length);
       // $scope.activeTweet[$scope.activeIndex];
       if(typeof $scope.activeTweet[$scope.activeIndex] == 'undefined'){
-        console.log('stop!')
+        console.log('stop!');
+        $scope.playing = false;
         soundManager.stopAll();
         soundManager.reboot();
       }
@@ -181,6 +183,7 @@ angular.module('twauralApp')
     }
     console.log($scope.activeStrings);
     $scope.stopAll = function(){
+      $scope.playing = false;
       soundManager.pauseAll();
       soundManager.reboot();
     }
@@ -189,9 +192,11 @@ angular.module('twauralApp')
       $scope.activeTweetIndex++;
     }
     $scope.startAll = function(){
+      $scope.playing = true;
       // Play Loop
       soundManager.play('loop');
       // play first sample
-      $scope.playChar($scope.activeTweet[0]);
+      soundManager.resumeAll();
+      // $scope.playChar($scope.activeTweet[0]);
     }
   }]);

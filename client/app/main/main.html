@@ -1,16 +1,31 @@
-<div id="wrapper" ng-style="{'background-image': 'url('+bg+')', 'background-color': activeColor}">
+<div id="wrapper" ng-style="{'background-image': 'url('+bg+')', 'background-color': activeColor, 'box-shadow': 'inset 0 0 0 20px #'+ activeColor}">
+	<form id="search">
+			<input ng-model="newTag" placeholder="{{activeTag}}" type="text"></input>
+			<div ng-click="fetchTweets(newTag)"><svg class="btn-update" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="5px" height="20px" width="20px" viewBox="0 0 20.2 20" enable-background="new 0 0 20.2 20" xml:space="preserve">
+<path fill="#FFF" d="M17.5,19.9l-4.7-4.7c-1.3,0.8-2.9,1.3-4.5,1.3C3.7,16.5,0,12.8,0,8.3C0,3.7,3.7,0,8.3,0c4.6,0,8.3,3.7,8.3,8.3
+					c0,1.6-0.4,3.1-1.2,4.3l4.8,4.8c0.3,0.2,0,0.9-0.5,1.4l-0.7,0.7C18.4,20,17.8,20.2,17.5,19.9z M13.8,8.3c0-3-2.5-5.5-5.5-5.5
+					c-3,0-5.5,2.5-5.5,5.5s2.5,5.5,5.5,5.5C11.3,13.8,13.8,11.3,13.8,8.3z"/>
+</svg></div>
+			<!-- <button ng-click="fetchTweets(newTag)">Update</button> -->
+	</form>
 	<div class="message">
 		
-		<div class="avatar"><img ng-src="{{userIcon}}"></div>
-		<p ng-style="{'color': '#'+activeColor }">@{{activeUsername}}: <span ng-repeat="char in origTweet track by $index" ng-class="{'active':activeIndex >= $index}">{{char}}<span><p>
-		<button ng-click="startAll()">Start</button>
-		<button ng-click="stopAll()">Stop</button>
-		<button ng-click="next()">Next</button>
-		<form>
-			<h1>#{{activeTag}}</h1>
-			<input ng-model="newTag" type="text"></input>
-			<button ng-click="fetchTweets(newTag)">Update</button>
-		</form>
+		<div class="avatar" ng-style="{'border-color': '#'+activeColor }"><img ng-src="{{userIcon}}"></div>
+		<h2 class="handle">@{{activeUsername}}</h2>
+		<p ng-style="{'color': '#'+activeColor }"><span ng-repeat="char in origTweet track by $index" ng-class="{'active':activeIndex >= $index}">{{char}}<span><p>
+		<div ng-click="startAll()" class="button" ng-hide="playing"><svg class="btn-play" fill="#FFF" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="50px" height="60px" viewBox="0 0 16 19.2" enable-background="new 0 0 16 19.2" xml:space="preserve">
+<path d="M15.5,8.8L1.8,0.3C0.8-0.4,0,0.1,0,1.4v16.5c0,1.2,0.8,1.7,1.8,1.1l13.7-8.5c0,0,0.5-0.3,0.5-0.8 C16,9.1,15.5,8.8,15.5,8.8L15.5,8.8z"/>
+</svg></div>
+		<div ng-click="stopAll()" class="button" ng-if="playing"><svg width="50px" height="60px" fill="#FFF" class="btn-pause" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 17 20.4" enable-background="new 0 0 17 20.4" xml:space="preserve"><path d="M14.1,0c-1.6,0-2.9,0.5-2.9,2.1v16.2c0,1.6,1.3,2.1,2.9,2.1s2.9-0.5,2.9-2.1V2.1C17,0.5,15.7,0,14.1,0z M2.9,0
+			C1.3,0,0,0.5,0,2.1v16.2c0,1.6,1.3,2.1,2.9,2.1s2.9-0.5,2.9-2.1V2.1C5.8,0.5,4.5,0,2.9,0z"/></svg>
+		</div>
+
+		<!-- <button ng-click="stopAll()">Stop</button> -->
+		<div ng-click="next()" class="button">
+			<svg class="btn-next" width="50px" height="60px" fill="#FFF" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 19.2 18.6" enable-background="new 0 0 19.2 18.6" xml:space="preserve"><path d="M13.2,8.6L1.6,1.3C0.7,0.7,0,1.1,0,2.2v14.2c0,1.1,0.7,1.5,1.6,0.9L13.2,10c0,0,0.4-0.3,0.4-0.7S13.2,8.6,13.2,8.6,L13.2,8.6z M16.8,0c-1.4,0-2.4,0.4-2.4,1.9v14.9c0,1.4,1,1.9,2.4,1.9s2.4-0.4,2.4-1.9V1.9C19.2,0.4,18.2,0,16.8,0z"/></svg>
+		</div>
+		<!-- <button ng-click="next()">Next</button> -->
+		
 	</div>
 	
 </div>
