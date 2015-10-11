@@ -81,14 +81,18 @@ div, body{
 }
 h1 {text-align: center;}
 h1 > .active {color: white;}
-
+h2.handle{
+    font-weight: 400;
+    opacity: .9;
+  }
 .avatar {
   border: 5px solid #FFF;  
   border-radius: 4px;
   margin: 0 auto;
-  padding: .5em;
+  padding: .15em;
   text-align: center;
   width: 8em;
+
 }
 .avatar img {
   border-radius: 3px;
@@ -97,4 +101,13 @@ h1 > .active {color: white;}
   filter: sepia(1) hue-rotate(200deg);
   width: 100%;
   vertical-align: middle;
+}
+
+.btn-play,
+.btn-pause,
+.btn-next {
+  opacity: .65;
+  &:hover {
+    opacity: 1.0;
+  }
 }
