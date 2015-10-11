@@ -2,7 +2,7 @@
 
 angular.module('twauralApp')
   .controller('MainCtrl', ['$scope', '$route', '$location', 'sampleService', 'tweetService', function($scope, $route, $location, sampleService, tweetService) {
-    console.log($route.current.params)
+    // console.log($route.current.params)
     $scope.activeTag = $route.current.params.tag;
     $scope.activeTweetIndex = 0;
     $scope.newTag = "";
@@ -12,13 +12,13 @@ angular.module('twauralApp')
     }
     $scope.fetchTweets = function(string){
       $scope.stopAll();
+      // soundManager.reboot();
       $location.url('/'+string);
       $scope.activeTag = string;
       var getTweets = tweetService.fetchByTag($scope.activeTag);
       getTweets.then(function(data){
         $scope.tweetsList = data.data.statuses;
         $scope.loadTweet($scope.tweetsList[0]);
-        console.log($scope.tweetsList);
       }, function(err){
 
       })
@@ -26,13 +26,15 @@ angular.module('twauralApp')
     // get Hashtag
     if($scope.activeTag){
       $scope.fetchTweets($scope.activeTag);
+    }else{
+      $scope.fetchTweets('rubbertracks');
     }
     $scope.activeId = $route.current.params.id;
     $scope.$watch('activeTweetIndex', function(newVal, oldVal){
       console.log("activeTweetIndex", newVal, oldVal)
       if(typeof oldVal != 'undefined'){
         if($scope.tweetsList){
-          $scope.loadTweet($scope.tweetsList[$scope.activeTweetIndex])
+          $scope.loadTweet($scope.tweetsList[newVal])
         }
       }
     })
@@ -49,11 +51,16 @@ angular.module('twauralApp')
     })
     
     $scope.loadTweet = function(object, tempoOverride){
+      angular.forEach($scope.clips, function(val, key){
+        console.log("killing ", key);
+        soundManager.destroySound('clip_'+key);
+      })
+      console.log(soundManager)
       $scope.bg = object.user.profile_banner_url || object.user.profile_background_image_url || object.user.profile_image_url;
       $scope.userIcon = object.user.profile_image_url;
       $scope.activeColor = object.user.profile_link_color;
       $scope.activeUsername = object.user.screen_name;
-      console.log("background ", $scope.bg, " icon ", $scope.userIcon)
+      // console.log("background ", $scope.bg, " icon ", $scope.userIcon)
       $scope.activeTweet = object.text;
       $scope.origTweet = object.text;
       $scope.activeTweet = $scope.activeTweet.replace(/ /g, '_');
@@ -78,7 +85,7 @@ angular.module('twauralApp')
           $scope.loadTweet(object, true);
         }else{
           var index = Math.floor((Math.random()*data.data.length));
-          console.log("loop index", data, index, $scope.duration)
+          // console.log("loop index", data, index, $scope.duration)
           $scope.loop = data.data[index];
           if($scope.soundManagerReady){
             $scope.fetchClips($scope.loop);
@@ -118,7 +125,7 @@ angular.module('twauralApp')
           var index = Math.floor((Math.random()*data.data.length));
           // push the number of samples we need
           for (var i = $scope.activeStrings.length - 1; i >= 0; i--) {
-            console.log(index, i, data.data[i].s3_key)
+            // console.log(index, i, data.data[i].s3_key)
             $scope.clips[$scope.activeStrings[i]] = data.data[i];
             if(data.data[i].s3_key.length == 0){
               var link = $scope.cloudfrontUrl + data.data[i+1].s3_key.replace('wav', 'mp3');
@@ -158,6 +165,10 @@ angular.module('twauralApp')
         $scope.playing = true;
       }
     }
+    $scope.next = function(){
+      // $scope.stopAll();
+      $scope.activeTweetIndex++;
+    }
     $scope.nextChar = function(){
       // var checkIndex = function (index){
       //   if($scope.activeTweet[$scope.activeIndex] == $scope.activeTweet[$scope.activeIndex-1]){
@@ -171,13 +182,14 @@ angular.module('twauralApp')
       $scope.activeIndex++;
       $scope.$apply();
       // checkIndex();
-      console.log('activeIndex', $scope.activeIndex, $scope.activeTweet[$scope.activeIndex], $scope.activeTweet.length);
+      // console.log('activeIndex', $scope.activeIndex, $scope.activeTweet[$scope.activeIndex], $scope.activeTweet.length);
       // $scope.activeTweet[$scope.activeIndex];
       if(typeof $scope.activeTweet[$scope.activeIndex] == 'undefined'){
         console.log('stop!');
         $scope.playing = false;
         soundManager.stopAll();
         soundManager.reboot();
+        $scope.next();
       }
       $scope.playChar($scope.activeTweet[$scope.activeIndex]);
     }
@@ -185,18 +197,18 @@ angular.module('twauralApp')
     $scope.stopAll = function(){
       $scope.playing = false;
       soundManager.pauseAll();
-      soundManager.reboot();
+      // soundManager.reboot();
     }
-    $scope.next = function(){
-      $scope.stopAll();
-      $scope.activeTweetIndex++;
-    }
+    
     $scope.startAll = function(){
       $scope.playing = true;
       // Play Loop
       soundManager.play('loop');
       // play first sample
-      soundManager.resumeAll();
-      // $scope.playChar($scope.activeTweet[0]);
+      // soundManager.resumeAll();
+      $scope.playChar($scope.activeTweet[0]);
+    }
+    $scope.resume = function(){
+      $scope.playing = true;
     }
   }]);
