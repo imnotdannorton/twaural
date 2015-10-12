@@ -1,5 +1,16 @@
 @import url(http://fonts.googleapis.com/css?family=Exo:400,700);
 
+@-webkit-keyframes mymove {
+    0%   {margin-top: 1px;}
+    50%  {margin-top: 0px;}
+    100% {margin-top: 1px;}
+} 
+@keyframes mymove {
+    0%   {margin-top: 1px;}
+    50%  {margin-top: -10px;}
+    100% {margin-top: 1px;}
+} 
+
 body, #wrapper { 
   background-position: center center;
   background-repeat:  no-repeat;
@@ -45,6 +56,10 @@ div, body{
     color: #fff;
     font-size: 1em;
     font-family: 'exo';
+    outline: none;
+    &:focus{
+      outline: none;
+    }
   }
   div{
     display: inline-block;
@@ -70,7 +85,17 @@ div, body{
   p{
     font-size: 2em;
     font-weight: bold;
+    word-wrap:break-word;
+    span{
+      transtion: .2s all;
+      position: relative;
+      margin-top: 1px;
+      margin-right: 5px;
+    }
     .active{
+      -webkit-animation: mymove .2s;
+      animation: mymove .2s;
+      animation-name: mymove;
       color: #fff;
     }
   }
