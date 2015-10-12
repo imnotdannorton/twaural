@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "main": "server/app.js",
   "dependencies": {
+    "bower": "0.6.x",
     "express": "~4.9.0",
     "morgan": "~1.0.0",
     "body-parser": "~1.5.0",
@@ -97,7 +98,7 @@
     "start": "node server",
     "test": "grunt test",
     "update-webdriver": "node node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update",
-    "postinstall": "bower install"
+    "postinstall":  "./node_modules/bower/bin/bower install"
   },
   "private": true
 }
