@@ -57,12 +57,13 @@ angular.module('twauralApp')
       })
       console.log(soundManager)
       $scope.bg = object.user.profile_banner_url || object.user.profile_background_image_url || object.user.profile_image_url;
-      $scope.userIcon = object.user.profile_image_url;
+      $scope.userIcon = object.user.profile_image_url.replace('_normal', '');
       $scope.activeColor = object.user.profile_link_color;
       $scope.activeUsername = object.user.screen_name;
       // console.log("background ", $scope.bg, " icon ", $scope.userIcon)
       $scope.activeTweet = object.text;
       $scope.origTweet = object.text;
+      $scope.activeTweet = $scope.activeTweet.replace(/  /g, " ");
       $scope.activeTweet = $scope.activeTweet.split(" ");
       $scope.duration = $scope.activeTweet.length;
       $scope.clips = {};
@@ -108,9 +109,9 @@ angular.module('twauralApp')
     // get clips array from loop
     $scope.fetchClips = function(object, keyOverride){
       console.log(object, object.musical_key);
-      if(object.musical_key !== null){
+      if(object.musical_key !== null && keyOverride !== true){
         var getClips = sampleService.fetchSamples(object.musical_key);
-      }else if(object.packages.length > 0){
+      }else if(object.packages.length > 0 && keyOverride !== true){
         var getClips = sampleService.fetchPackage(object.packages[0])
       }else if(keyOverride){
         var getClips = sampleService.fetchSamples("E Major");
