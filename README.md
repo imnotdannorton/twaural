@@ -5,7 +5,7 @@
 
 
 ## Getting Started
-  This project was generated with the [Angular Full-Stack Generator](https://github.com/DaftMonk/generator-angular-fullstack)     version 3.0.0-rc4.
+  This project was generated with the [Angular Full-Stack Generator](https://github.com/DaftMonk/generator-angular-fullstack)     version 3.0.0-rc4. MongoDB is supported in the package, however it is not necessary to run Twaural.
 
 ### Prerequisites
 
