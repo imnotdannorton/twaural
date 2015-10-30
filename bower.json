@@ -12,7 +12,8 @@
     "font-awesome": ">=4.1.0",
     "lodash": "~2.4.1",
     "angular-socket-io": "~0.7.0",
-    "SoundManager2":"~2.97.0"
+    "SoundManager2":"soundmanager2#*",
+    "jquery":"2.1.4"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.0"

@@ -14,8 +14,16 @@
       @import url('http://fonts.googleapis.com/css?family=Roboto:400,700');
     </style>
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-
-    <link rel="stylesheet" href="app/app.2ac9d11f.css">
+    <!-- build:css(client) app/vendor.css -->
+      <!-- bower:css -->
+      <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css({.tmp,client}) app/app.css -->
+      <link rel="stylesheet" href="app/app.css">
+      <!-- injector:css -->
+      <link rel="stylesheet" href="app/app.css">
+      <!-- endinjector -->
+    <!-- endbuild -->
   </head>
   <body ng-app="twauralApp">
     <!--[if lt IE 7]>
@@ -40,7 +48,32 @@
     <script src="bower_components/es5-shim/es5-shim.js"></script>
     <script src="bower_components/json3/lib/json3.min.js"></script>
     <![endif]-->
-    <script src="app/vendor.e439b9df.js"></script>
-    <script src="app/app.7923f534.js"></script>
+    <!-- build:js({client,node_modules}) app/vendor.js -->
+      <!-- bower:js -->
+      <script src="../bower_components/jquery/dist/jquery.js"></script>
+      <script src="../bower_components/angular/angular.js"></script>
+      <script src="../bower_components/angular-resource/angular-resource.js"></script>
+      <script src="../bower_components/angular-cookies/angular-cookies.js"></script>
+      <script src="../bower_components/angular-sanitize/angular-sanitize.js"></script>
+      <script src="../bower_components/angular-route/angular-route.js"></script>
+      <script src="../bower_components/lodash/dist/lodash.compat.js"></script>
+      <script src="../bower_components/angular-socket-io/socket.js"></script>
+      <script src="../bower_components/SoundManager2/script/soundmanager2.js"></script>
+      <!-- endbower -->
+      <script src="socket.io-client/socket.io.js"></script>
+    <!-- endbuild -->
+    <!-- build:js({.tmp,client}) app/app.js -->
+      <script src="app/app.js"></script>
+      <!-- injector:js -->
+      <script src="app/main/main.controller.js"></script>
+      <script src="app/main/main.js"></script>
+      <script src="app/services/sample.service.js"></script>
+      <script src="app/services/tweets.service.js"></script>
+      <script src="components/footer/footer.directive.js"></script>
+      <script src="components/navbar/navbar.controller.js"></script>
+      <script src="components/navbar/navbar.directive.js"></script>
+      <script src="components/socket/socket.service.js"></script>
+      <!-- endinjector -->
+    <!-- endbuild -->
   </body>
 </html>

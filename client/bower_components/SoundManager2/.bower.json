@@ -29,6 +29,5 @@
   },
   "_source": "git://github.com/scottschiller/SoundManager2.git",
   "_target": "*",
-  "_originalSource": "soundmanager2",
-  "_direct": true
+  "_originalSource": "soundmanager2"
 }
