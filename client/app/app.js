@@ -4,8 +4,7 @@ angular.module('twauralApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ngRoute',
-  'btford.socket-io'
+  'ngRoute'
 ])
   .config(function($routeProvider, $locationProvider) {
     $routeProvider
