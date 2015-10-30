@@ -1,8 +1,13 @@
 # twaural
+  Twaural uses the [Converse Sample Libray](http://conversesamplelibrary.com) API to create ephemeral little songs out of tweets   from a hashtag of your choosing. 
+  
+  [Check it out here](http://twaural.herokuapp.com)
 
-This project was generated with the [Angular Full-Stack Generator](https://github.com/DaftMonk/generator-angular-fullstack) version 3.0.0-rc4.
+
+
 
 ## Getting Started
+  This project was generated with the [Angular Full-Stack Generator](https://github.com/DaftMonk/generator-angular-fullstack)     version 3.0.0-rc4. MongoDB is supported in the package, however it is not necessary to run Twaural.
 
 ### Prerequisites
 
@@ -18,8 +23,6 @@ This project was generated with the [Angular Full-Stack Generator](https://githu
 1. Run `npm install` to install server dependencies.
 
 2. Run `bower install` to install front-end dependencies.
-
-3. Run `mongod` in a separate shell to keep an instance of the MongoDB Daemon running
 
 4. Run `grunt serve` to start the development server. It should automatically open the client in your browser when ready.
 
